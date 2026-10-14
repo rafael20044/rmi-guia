@@ -1,0 +1,30 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.tascape.qa:lipermi:1.0.1'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainClass = 'dev.rafael.imc.rmi.Principal'
+    applicationDefaultJvmArgs = [
+        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.io=ALL-UNNAMED'
+    ]
+}
